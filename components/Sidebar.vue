@@ -4,8 +4,8 @@
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar">
       <div class="side-header">
-        <a class="header-brand1" href="index.html">
-          <img
+        <a class="header-brand1" href="/">
+          <!-- <img
             src="../assets/images/brand/logo.png"
             class="header-brand-img desktop-logo"
             alt="logo"
@@ -24,6 +24,20 @@
             src="../assets/images/brand/logo-3.png"
             class="header-brand-img light-logo1"
             alt="logo"
+          /> -->
+          <!-- <div class="light-logo1 login100-form-title mt-5 pt-3">
+            <img
+              src="../assets/logo.png"
+              class="header-brand-img mb-3"
+              alt=""
+            />
+            CHI Budget
+          </div> -->
+
+          <img
+            src="../assets/logo.png"
+            class="header-brand-img mb-3 light-logo"
+            alt=""
           />
         </a>
         <!-- LOGO -->
@@ -52,6 +66,24 @@
               ><span class="side-menu__label">Dashboard</span></a
             >
           </li>
+
+          <!-- <li class="mb-1">
+            <button
+              class="btn btn-toggle align-items-center rounded collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#home-collapse"
+              aria-expanded="true"
+            >
+              Home
+            </button>
+            <div class="collapse show" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="link-dark rounded">Overview</a></li>
+                <li><a href="#" class="link-dark rounded">Updates</a></li>
+                <li><a href="#" class="link-dark rounded">Reports</a></li>
+              </ul>
+            </div>
+          </li> -->
           <li class="sub-category">
             <h3>UI Kit</h3>
           </li>
@@ -701,4 +733,7 @@ export default {};
 </script>
 
 <style scoped>
+.header-brand-img {
+  width: 30px;
+}
 </style>
