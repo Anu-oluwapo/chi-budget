@@ -9,6 +9,10 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
 
+    bodyAttrs: {
+      class: 'app sidebar-mini ltr light-mode'
+    },
+
     script: [
       { src: '/js/jquery.min.js', body:true },
       { src: '/js/jquery.sparkline.min.js', body:true },

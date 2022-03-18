@@ -1,6 +1,6 @@
 <template>
   <!-- app-Header -->
-  <div class="app-header header sticky">
+  <div class="app-header">
     <div class="container-fluid main-container">
       <div class="d-flex">
         <a
@@ -12,12 +12,12 @@
         <!-- sidebar-toggle-->
         <a class="logo-horizontal" href="index.html">
           <img
-            src="~assets/images/brand/logo.png"
+            src="../assets/images/brand/logo.png"
             class="header-brand-img desktop-logo"
             alt="logo"
           />
           <img
-            src="~assets/images/brand/logo-3.png"
+            src="../assets/images/brand/logo-3.png"
             class="header-brand-img light-logo1"
             alt="logo"
           />
@@ -254,7 +254,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="~assets/images/users/1.jpg"
+                          data-bs-image-src="../assets/images/users/1.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -275,7 +275,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="~assets/images/users/15.jpg"
+                          data-bs-image-src="../assets/images/users/15.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -296,7 +296,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="~assets/images/users/12.jpg"
+                          data-bs-image-src="../assets/images/users/12.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -317,7 +317,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="~assets/images/users/4.jpg"
+                          data-bs-image-src="../assets/images/users/4.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -357,7 +357,7 @@
                     class="nav-link leading-none d-flex"
                   >
                     <img
-                      src="~assets/images/users/21.jpg"
+                      src="../assets/images/users/21.jpg"
                       alt="profile-user"
                       class="avatar profile-user brround cover-image"
                     />
