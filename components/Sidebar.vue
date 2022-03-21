@@ -20,12 +20,11 @@
             class="header-brand-img light-logo"
             alt="logo"
           />
-          -->
           <img
             src="../assets/images/brand/logo-3.png"
             class="header-brand-img light-logo1"
             alt="logo"
-          />
+          /> -->
           <!-- <div class="light-logo1 login100-form-title mt-5 pt-3">
             <img
               src="../assets/logo.png"
@@ -35,11 +34,7 @@
             CHI Budget
           </div> -->
 
-          <img
-            src="../assets/logo.png"
-            class="header-brand-img mb-3 light-logo"
-            alt=""
-          />
+          <img src="../assets/logo.png" class="header-brand-img mb-3" alt="" />
         </a>
         <!-- LOGO -->
       </div>

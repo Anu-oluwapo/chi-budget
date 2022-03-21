@@ -1,6 +1,6 @@
 <template>
   <!-- app-Header -->
-  <div class="app-header">
+  <div class="app-header header sticky">
     <div class="container-fluid main-container">
       <div class="d-flex">
         <a
@@ -11,16 +11,25 @@
         ></a>
         <!-- sidebar-toggle-->
         <a class="logo-horizontal" href="index.html">
-          <img
-            src="../assets/images/brand/logo.png"
+          <!-- <img
+            src="~assets/images/brand/logo.png"
             class="header-brand-img desktop-logo"
             alt="logo"
           />
           <img
-            src="../assets/images/brand/logo-3.png"
+            src="~assets/images/brand/logo-3.png"
             class="header-brand-img light-logo1"
             alt="logo"
-          />
+          /> -->
+
+          <div class="light-logo1 login100-form-title mt-5 pt-3">
+            <img
+              src="../assets/logo.png"
+              class="header-brand-img mb-3"
+              alt=""
+            />
+            CHI Budget
+          </div>
         </a>
         <!-- LOGO -->
         <div class="main-header-center ms-3 d-none d-lg-block">
@@ -254,7 +263,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="../assets/images/users/1.jpg"
+                          data-bs-image-src="~assets/images/users/1.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -275,7 +284,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="../assets/images/users/15.jpg"
+                          data-bs-image-src="~assets/images/users/15.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -296,7 +305,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="../assets/images/users/12.jpg"
+                          data-bs-image-src="~assets/images/users/12.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -317,7 +326,7 @@
                             align-self-center
                             cover-image
                           "
-                          data-bs-image-src="../assets/images/users/4.jpg"
+                          data-bs-image-src="~assets/images/users/4.jpg"
                         ></span>
                         <div class="wd-90p">
                           <div class="d-flex">
@@ -357,7 +366,7 @@
                     class="nav-link leading-none d-flex"
                   >
                     <img
-                      src="../assets/images/users/21.jpg"
+                      src="~assets/images/users/21.jpg"
                       alt="profile-user"
                       class="avatar profile-user brround cover-image"
                     />
@@ -406,4 +415,7 @@ export default {};
 </script>
 
 <style scoped>
+.header-brand-img {
+  width: 30px;
+}
 </style>
