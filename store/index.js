@@ -39,13 +39,22 @@ import 'vuex'
       state.errorMessage = payload
       },
   }
+
+  export const getters = {
+    getUser(state){
+    return state.user
+    },
+    getToken(state){
+    return state.token
+    }
+  }
   
 
-// if(sessionStorage.getItem('token')){
-//   store.commit('setToken', sessionStorage.getItem('token'),)
-//   store.commit('setUser', JSON.parse(sessionStorage.getItem('user')))
-//   store.commit('setLogger', true)
-  
-//   // store.dispatch('authenticate/login')
-// }
+  // if(sessionStorage.getItem('token')){
+  //   store.commit('setToken', sessionStorage.getItem('token'),)
+  //   store.commit('setUser', JSON.parse(sessionStorage.getItem('user')))
+  //   store.commit('setLogger', true)
+    
+  //   // store.dispatch('authenticate/login')
+  // }
 

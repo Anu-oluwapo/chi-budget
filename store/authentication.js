@@ -1,12 +1,14 @@
 import axios from 'axios'
 import swal from 'sweetalert2';
-axios.defaults.baseURL = 'http://192.168.0.2:81';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.baseURL = 'http://192.168.0.2:85';
 
     export default {
       namespaced:true,
     state: () => ( {
       loading:false,
       errorMessage:'',
+      authenticationLevel: 0,
       }),
 
       mutations: {
@@ -17,6 +19,10 @@ axios.defaults.baseURL = 'http://192.168.0.2:81';
         setError(state, payload){
         state.errorMessage = payload
         },
+    
+        setAuthenticationLevel(state, payload){
+        state.authenticationLevel = payload
+        },
       },
       actions: {
         async authenticate({ state, commit }, payload){
@@ -24,23 +30,32 @@ axios.defaults.baseURL = 'http://192.168.0.2:81';
           commit('setLoading', true)
           commit('setError', '' )        
 
-          setTimeout(()=>{
-            console.log(payload)
-            commit('setLoading', false)
-            commit('setError', 'None' )
-            // swal.fire({title:"Success!", text: state.errorMessage, icon: "success", confirmButtonColor: '#990100'})
-            swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',footer: '<a href="">Why do I have this issue?</a>'})
-          },3000)
+            const response = await axios.post('/authenticate',{
+              userName: payload.username,
+              password: payload.password
+            })
 
-          
+            if(response.data.isSuccessful){
+              commit('setLoading', false)
+              commit('setAuthenticationLevel', 1)
 
-          // alert('Done')
+              commit('setToken', response.data.token , {root:true})
+              commit('setUser', 
+                {
+                  email: response.data.email,
+                  userId: response.data.userId,
+                  role: response.data.role,
+                  userName: response.data.userName
+                }, 
+              {root:true})
 
-          // commit('setLoading', false)
-          // commit('setError', 'None' )
-
-          
-    
+              swal.fire({title:"Success!", text: 'An OTP Has Been Sent To Your Email', icon: "success", confirmButtonColor: '#990100'})
+            } else{
+              commit('setLoading', false)
+              commit('setError', response.data.message )
+              swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',footer: '<a href="">Why do I have this issue?</a>'})
+            }
+            
           // const response = await axios.post('/Login',{
           //     password: payload.password,
           //     userName: payload.username
@@ -66,6 +81,26 @@ axios.defaults.baseURL = 'http://192.168.0.2:81';
           //   commit('setError', response.data.value.message )
           // }
     
+        },
+
+        async checkOTP({ state, commit, rootGetters }, payload){
+          commit('setLoading', true)
+          commit('setError', '' )        
+          
+            const response = await axios.post('/CheckOTP', payload)
+            
+            if(response.data.isSuccessful){
+              commit('setLoading', false)
+              sessionStorage.setItem('token', rootGetters.getToken  )
+              sessionStorage.setItem('user', JSON.stringify(rootGetters.getUser) )
+              commit('setLogger', true, {root:true})
+              window.location.reload()
+            }else{
+              commit('setLoading', false)
+              commit('setError', response.data.message )
+              swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',confirmButtonText:'Retry'})
+              
+            }
         },
     
         logout(){

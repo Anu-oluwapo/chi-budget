@@ -22,21 +22,22 @@
               <div class="tabs-menu1">
                 <!-- Tabs -->
                 <ul class="nav panel-tabs">
-                  <li class="mx-0">
+                  <li class="mx-auto">
                     <a href="#tab5" class="active" data-bs-toggle="tab"
                       >Login</a
                     >
                   </li>
-                  <li class="mx-0">
+                  <!-- <li class="mx-0">
                     <a href="#tab6" data-bs-toggle="tab">Register</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
             <div class="panel-body tabs-menu-body p-0 pt-5">
               <div class="tab-content">
-                <Login />
-                <Register />
+                <Otp v-if="authenticationLevel == 1" />
+                <Login v-else-if="authenticationLevel == 0" />
+                <!-- <Register /> -->
               </div>
             </div>
           </div>
@@ -48,8 +49,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   layout: "login",
+
+  data() {
+    return {};
+  },
+
+  computed: {
+    ...mapState("authentication", ["authenticationLevel"]),
+  },
 };
 </script>
 

@@ -1,4 +1,5 @@
 export default {
+  middleware: ["auth"],
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'chi-budget',

@@ -13,8 +13,8 @@
         </a>
         <input
           class="input100 border-start-0 form-control ms-0"
-          type="email"
-          placeholder="Email"
+          type="text"
+          placeholder="Username"
           v-model="data.username"
           required
         />
