@@ -55,32 +55,6 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
               commit('setError', response.data.message )
               swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',footer: '<a href="">Why do I have this issue?</a>'})
             }
-            
-          // const response = await axios.post('/Login',{
-          //     password: payload.password,
-          //     userName: payload.username
-          // })
-      
-          // if(response.data.value.status == true){
-          //   commit('setUser', response.data.value.user, {root:true})
-          //   sessionStorage.setItem('user', JSON.stringify(response.data.value.user) )
-    
-          //   commit('setLogger', true, {root:true})
-    
-          //   commit('setToken', response.data.value.data , {root:true})
-          //   sessionStorage.setItem('token', response.data.value.data  )
-    
-          //   commit('setLoading', false)
-    
-          //   commit('setError', response.data.value.message)
-    
-          //   window.location.reload()
-            
-          // } else{
-          //   commit('setLoading', false)  
-          //   commit('setError', response.data.value.message )
-          // }
-    
         },
 
         async checkOTP({ state, commit, rootGetters }, payload){
@@ -91,10 +65,17 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
             
             if(response.data.isSuccessful){
               commit('setLoading', false)
-              sessionStorage.setItem('token', rootGetters.getToken  )
-              sessionStorage.setItem('user', JSON.stringify(rootGetters.getUser) )
+              // this.$cookies.setAll([
+              //   { name: 'authStatus', value: true },
+              //   { name: 'token', value: rootGetters.getToken },
+              //   { name: 'user', value: JSON.stringify(rootGetters.getUser) },
+                
+              // ])
+              this.$cookies.set('authStatus', true)
+              this.$cookies.set('token', rootGetters.getToken)
+              this.$cookies.set('user', JSON.stringify(rootGetters.getUser) )
               commit('setLogger', true, {root:true})
-              window.location.reload()
+              window.location ='/'
             }else{
               commit('setLoading', false)
               commit('setError', response.data.message )
@@ -105,15 +86,9 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
     
         logout(){
           sessionStorage.clear()
+          this.$cookies.removeAll()
           location.reload()
         },
 
-        // login({commit}){
-        //   commit('setLogger', true)
-        //   commit('setToken',sessionStorage.getItem("token"))
-        //   commit('setUser', JSON.parse(sessionStorage.getItem("user")))
-          
-          
-        // }
       },
     }

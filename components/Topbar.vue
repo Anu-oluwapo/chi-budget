@@ -395,9 +395,9 @@
                     <a class="dropdown-item" href="lockscreen.html">
                       <i class="dropdown-icon fe fe-lock"></i> Lockscreen
                     </a>
-                    <a class="dropdown-item" href="login.html">
+                    <button class="dropdown-item" @click.prevent="logout">
                       <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -411,11 +411,24 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  data() {
+    return {};
+  },
+
+  methods: {
+    ...mapActions("authentication", ["logout"]),
+  },
+};
 </script>
 
 <style scoped>
 .header-brand-img {
   width: 30px;
+}
+
+.dropdown-menu {
+  margin-left: -135px;
 }
 </style>

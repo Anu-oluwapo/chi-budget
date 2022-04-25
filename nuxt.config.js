@@ -80,6 +80,9 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+
+    'cookie-universal-nuxt', 
+
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
@@ -91,7 +94,11 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://192.168.0.2:85',
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

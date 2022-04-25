@@ -1,9 +1,9 @@
-//import axios from 'axios'
-import 'vuex'
+import axios from 'axios'
+import 'cookie-universal-nuxt'
 
-//axios.defaults.baseURL = 'http://192.168.0.2:81';
-//axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.baseURL = 'http://192.168.0.2:85';
+//axios.defaults.headers.common['Authorization'] = app.$cookies.get('token') 
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 
   export const state = () =>({
@@ -40,6 +40,13 @@ import 'vuex'
       },
   }
 
+  export const actions = {
+    async getUser({ state, commit }, payload){
+      const response = await axios.get(`/getUserById${state.user.userId}`)
+
+    }
+  }
+
   export const getters = {
     getUser(state){
     return state.user
@@ -48,6 +55,8 @@ import 'vuex'
     return state.token
     }
   }
+
+  console.log($cookies.get('token'))
   
 
   // if(sessionStorage.getItem('token')){
