@@ -1,7 +1,5 @@
-import axios from 'axios'
 import swal from 'sweetalert2';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.baseURL = 'http://192.168.0.2:85';
+
 
     export default {
       namespaced:true,
@@ -30,29 +28,31 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
           commit('setLoading', true)
           commit('setError', '' )        
 
-            const response = await axios.post('/authenticate',{
+            const response = await this.$axios.$post('/authenticate',{
               userName: payload.username,
               password: payload.password
             })
 
-            if(response.data.isSuccessful){
+            //console.log(response)
+
+            if(response.isSuccessful){
               commit('setLoading', false)
               commit('setAuthenticationLevel', 1)
 
-              commit('setToken', response.data.token , {root:true})
+              commit('setToken', response.token , {root:true})
               commit('setUser', 
                 {
-                  email: response.data.email,
-                  userId: response.data.userId,
-                  role: response.data.role,
-                  userName: response.data.userName
+                  email: response.email,
+                  userId: response.userId,
+                  role: response.role,
+                  userName: response.userName
                 }, 
               {root:true})
 
               swal.fire({title:"Success!", text: 'An OTP Has Been Sent To Your Email', icon: "success", confirmButtonColor: '#990100'})
             } else{
               commit('setLoading', false)
-              commit('setError', response.data.message )
+              commit('setError', response.message )
               swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',footer: '<a href="">Why do I have this issue?</a>'})
             }
         },
@@ -61,9 +61,9 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
           commit('setLoading', true)
           commit('setError', '' )        
           
-            const response = await axios.post('/CheckOTP', payload)
+            const response = await this.$axios.$post('/CheckOTP', payload)
             
-            if(response.data.isSuccessful){
+            if(response.isSuccessful){
               commit('setLoading', false)
               // this.$cookies.setAll([
               //   { name: 'authStatus', value: true },
@@ -78,7 +78,7 @@ axios.defaults.baseURL = 'http://192.168.0.2:85';
               window.location ='/'
             }else{
               commit('setLoading', false)
-              commit('setError', response.data.message )
+              commit('setError', response.message )
               swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',confirmButtonText:'Retry'})
               
             }

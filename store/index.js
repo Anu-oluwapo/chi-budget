@@ -1,10 +1,4 @@
-import axios from 'axios'
 import 'cookie-universal-nuxt'
-
-axios.defaults.baseURL = 'http://192.168.0.2:85';
-//axios.defaults.headers.common['Authorization'] = app.$cookies.get('token') 
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
 
   export const state = () =>({
   loading:false,
@@ -42,7 +36,10 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
   export const actions = {
     async getUser({ state, commit }, payload){
-      const response = await axios.get(`/getUserById${state.user.userId}`)
+      //this.$axios.setToken(this.$cookies.get('token'), 'Bearer')
+      const response = await this.$axios.$get(`/getUserById${state.user.userId}`)
+        console.log(response)
+      commit('setUser', response)
 
     }
   }
@@ -56,7 +53,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
     }
   }
 
-  console.log($cookies.get('token'))
+  //console.log($cookies.get('token'))
   
 
   // if(sessionStorage.getItem('token')){

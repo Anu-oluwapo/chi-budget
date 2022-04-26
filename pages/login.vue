@@ -57,6 +57,12 @@ export default {
     return {};
   },
 
+  mounted() {
+    // if (this.$cookies.get("token")) {
+    //   window.location = "/";
+    // }
+  },
+
   computed: {
     ...mapState("authentication", ["authenticationLevel"]),
   },

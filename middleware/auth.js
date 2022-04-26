@@ -5,4 +5,6 @@ export default function ({ app, store, redirect }) {
         store.commit('setUser', app.$cookies.get('user'))
         store.commit('setLogger', true)
     }
+
+    
   }

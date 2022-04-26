@@ -176,7 +176,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  deactivated() {
+    this.$cookies.removeAll();
+  },
+};
 </script>
 
 <style scoped>
