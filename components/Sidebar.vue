@@ -49,12 +49,12 @@
           >
         </li>
         <li class="sub-category">
-          <h3>Widgets & Maps</h3>
+          <h3>Admin</h3>
         </li>
         <li>
-          <nuxt-link class="side-menu__item" to="test"
+          <nuxt-link class="side-menu__item" to="/admin/users"
             ><i class="side-menu__icon fe fe-grid"></i
-            ><span class="side-menu__label">Test Page</span></nuxt-link
+            ><span class="side-menu__label">Users</span></nuxt-link
           >
         </li>
         <li class="slide">
@@ -63,15 +63,25 @@
             data-bs-toggle="collapse"
             href="#collapseExample"
             ><i class="side-menu__icon fe fe-globe"></i
-            ><span class="side-menu__label">Maps</span
+            ><span class="side-menu__label">Setup</span
             ><i class="angle fa fa-angle-right"></i
           ></a>
           <ul class="slidemenu collapse" id="collapseExample">
             <li>
-              <nuxt-link to="login" class="slide-item">Login</nuxt-link>
+              <nuxt-link to="/admin/setup/budgetparameter" class="slide-item"
+                >Budget Parameters</nuxt-link
+              >
             </li>
-            <li><a href="maps2.html" class="slide-item">Mapel Maps</a></li>
-            <li><a href="maps.html" class="slide-item">Vector Maps</a></li>
+            <li>
+              <nuxt-link to="/admin/setup/budgettype" class="slide-item"
+                >Budget Types</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link to="/admin/setup/company" class="slide-item"
+                >Company</nuxt-link
+              >
+            </li>
           </ul>
         </li>
       </ul>
