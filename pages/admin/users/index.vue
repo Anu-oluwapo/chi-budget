@@ -94,11 +94,20 @@ export default {
   },
 
   methods: {
-    ...mapActions("admin", ["getAllUsers", "activateUser", "deactivateUser"]),
+    ...mapActions("admin/userManagement", [
+      "getAllUsers",
+      "activateUser",
+      "deactivateUser",
+    ]),
   },
 
   computed: {
-    ...mapState("admin", ["users", "loading", "errorMessage", "pageLoading"]),
+    ...mapState("admin/userManagement", [
+      "users",
+      "loading",
+      "errorMessage",
+      "pageLoading",
+    ]),
     ...mapState(["user"]),
   },
 

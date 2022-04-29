@@ -26,10 +26,17 @@ export default {
         setUsers(state, payload){
         state.users = payload
         },
+
+        setUser(state, payload){
+        state.userDTO = payload
+        },
     
        
       },
       actions: {
+
+        // ------------------- USER MANAGEMENT------------------- //
+
         async getAllUsers({ state, commit }, payload){
             commit('setPageLoading', true)
             const response = await this.$axios.$get(`/getAllUser`)
@@ -50,7 +57,7 @@ export default {
               
               if(response.isSuccessful){
                 commit('setLoading', false)
-                swal.fire({title:"Success!", text: 'User Activated Successfully', icon: "success", confirmButtonColor: '#990100'})
+                await swal.fire({title:"Success!", text: 'User Activated Successfully', icon: "success", confirmButtonColor: '#990100'})
               }else{
                 commit('setLoading', false)
                 commit('setError', response.message )
@@ -71,7 +78,7 @@ export default {
               
               if(response.isSuccessful){
                 commit('setLoading', false)
-                swal.fire({title:"Success!", text: 'User Dectivated Successfully', icon: "success", confirmButtonColor: '#990100'})
+                await swal.fire({title:"Success!", text: 'User Dectivated Successfully', icon: "success", confirmButtonColor: '#990100'})
               }else{
                 commit('setLoading', false)
                 commit('setError', response.message )
@@ -107,5 +114,36 @@ export default {
               }
           },
 
+          async getUser({ commit}, payload){
+            commit('setPageLoading', true)
+            const response = await this.$axios.$get(`/getUserById${payload}`)
+            commit('setPageLoading', false)
+            commit('setUser', response)  
+            
+          },
+
+          async updateUser({state, commit}, payload){
+            commit('setLoading', true)
+            commit('setError', '' )        
+            
+              const response = await this.$axios.$post('/updateUser', payload)
+              
+              if(response.isSuccessful){
+                commit('setLoading', false)
+               await swal.fire({title:"Success!", text: 'User Details Updated Successfully', icon: "success", confirmButtonColor: '#990100'})
+
+                window.location = '/admin/users'
+              }else{
+                commit('setLoading', false)
+                commit('setError', response.message )
+                swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100'})
+                
+              }
+          },
+
+          // ------------------- END USER MANAGEMENT ------------------- //
+
       },
+
+     
     }

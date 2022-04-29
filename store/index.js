@@ -1,5 +1,5 @@
 import 'cookie-universal-nuxt'
-
+export const strict = false
   export const state = () =>({
   loading:false,
   errorMessage:'',
@@ -38,7 +38,7 @@ import 'cookie-universal-nuxt'
     async getUser({ state, commit }, payload){
       //this.$axios.setToken(this.$cookies.get('token'), 'Bearer')
       const response = await this.$axios.$get(`/getUserById${state.user.userId}`)
-        console.log(response)
+        //console.log(response)
       commit('setUser', response)
 
     }

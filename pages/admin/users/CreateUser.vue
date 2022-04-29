@@ -99,11 +99,11 @@ export default {
   },
 
   methods: {
-    ...mapActions("admin", ["createUser"]),
+    ...mapActions("admin/userManagement", ["createUser"]),
   },
 
   computed: {
-    ...mapState("admin", ["loading", "errorMessage"]),
+    ...mapState("admin/userManagement", ["loading", "errorMessage"]),
     ...mapState(["user"]),
   },
 
