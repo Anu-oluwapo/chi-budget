@@ -8,19 +8,28 @@
             <h3 class="card-title mb-0 d-inline-block">All Companies</h3>
             <nuxt-link
               class="d-inline-block ml-auto"
-              to="/admin/users/createuser"
+              to="/admin/setup/company/createcompany"
               ><button class="btn btn-primary">Create New Company</button>
             </nuxt-link>
           </div>
           <div class="card-body pt-4">
-            <div v-if="companies.length == 0" class="emptyState"></div>
             <div
-              v-else-if="pageLoading"
+              v-if="pageLoading"
               class="spinner-grow d-block mx-auto my-5 text-primary"
               role="status"
             >
               <span class="sr-only">Loading...</span>
             </div>
+            <div v-else-if="companies.length == 0" class="emptyState">
+              <img class="d-block mx-auto my-4" src="@/assets/empty.svg" />
+              <h3 class="text-center mt-5">No data available to show</h3>
+              <nuxt-link
+                class="d-block text-center"
+                to="/admin/setup/company/createcompany"
+                >Create new company to continue</nuxt-link
+              >
+            </div>
+
             <table v-else class="table table-striped">
               <thead>
                 <tr>
@@ -36,7 +45,7 @@
                   <td>{{ company.name }}</td>
 
                   <td>
-                    <nuxt-link :to="'/admin/users/edituser/' + company.id"
+                    <nuxt-link :to="'/admin/setup/company/' + company.id"
                       ><button class="btn btn-primary">Edit</button></nuxt-link
                     >
                   </td>
@@ -77,3 +86,4 @@ export default {
   },
 };
 </script>
+

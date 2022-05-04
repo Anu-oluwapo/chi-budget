@@ -183,12 +183,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 footer {
   background-color: white;
 }
 
 .side-app {
   margin-top: 100px;
+}
+
+.emptyState img {
+  width: 15vw;
 }
 </style>

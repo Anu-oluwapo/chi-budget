@@ -82,6 +82,11 @@
                 >Company</nuxt-link
               >
             </li>
+            <li>
+              <nuxt-link to="/admin/setup/department" class="slide-item"
+                >Departments</nuxt-link
+              >
+            </li>
           </ul>
         </li>
       </ul>
