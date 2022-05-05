@@ -60,8 +60,8 @@
                   <td>{{ budgetParameter.use }}</td>
                   <td>{{ budgetParameter.type }}</td>
                   <td>{{ budgetParameter.year }}</td>
-                  <td>{{ budgetParameter.startDate }}</td>
-                  <td>{{ budgetParameter.endDate }}</td>
+                  <td>{{ budgetParameter.startDate.split("T")[0] }}</td>
+                  <td>{{ budgetParameter.endDate.split("T")[0] }}</td>
 
                   <td>
                     <nuxt-link

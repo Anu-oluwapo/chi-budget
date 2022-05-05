@@ -174,9 +174,11 @@ export default {
             commit('setLoading', true)
             commit('setError', '' )        
             
-              const response = await this.$axios.$post('/addDepartment', {
-                "id": "",
+             try{ const response = await this.$axios.$post('/addDepartment', {
+                "companyId": payload.companyId,
                 "name": payload.name,
+                "branch": payload.branch.name,
+                "branchId": payload.branch.id,
                 "submittedBy": rootGetters.getUser.email
               })
               
@@ -191,6 +193,9 @@ export default {
                 swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100'})
                 
               }
+            } catch(error){
+              swal.fire({title:"Error!", text: error, icon: "error", confirmButtonColor: '#990100'})
+            }
           },
 
           async updateDepartment({state, commit}, payload){

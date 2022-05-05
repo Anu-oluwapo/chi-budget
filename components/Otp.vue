@@ -37,7 +37,12 @@
       </div>
       <div class="text-center pt-3">
         <p class="text-dark mb-0">
-          Didnt get a code ?<a href="" class="text-primary ms-1">Resend Code</a>
+          Didnt get a code ?<a
+            href="#"
+            @click.prevent="resendOtp()"
+            class="text-primary ms-1"
+            >Resend Code</a
+          >
         </p>
       </div>
     </form>
@@ -55,7 +60,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("authentication", ["checkOTP"]),
+    ...mapActions("authentication", ["checkOTP", "resendOtp"]),
   },
 
   computed: {

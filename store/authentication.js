@@ -83,6 +83,21 @@ import swal from 'sweetalert2';
               
             }
         },
+
+        async resendOtp({ state, commit, rootGetters },){
+          commit('setError', '' )        
+          
+            const response = await this.$axios.$post('/resendOTP', {userName: rootGetters.getUser.userName})
+            console.log(response)
+            if(response){
+              swal.fire({title:"Success!", text: 'An OTP Has Been Sent To Your Email', icon: "success", confirmButtonColor: '#990100'})
+            }else{
+              
+              commit('setError', response.message )
+              swal.fire({title:"Error!", text: state.errorMessage, icon: "error", confirmButtonColor: '#990100',confirmButtonText:'Retry'})
+              
+            }
+        },
     
         logout(){
           sessionStorage.clear()

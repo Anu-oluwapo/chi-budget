@@ -16,12 +16,53 @@
               <span class="sr-only">Loading...</span>
             </div>
             <form v-else @submit.prevent="updateDepartment(department)">
+              <label>Select Company</label>
+              <select
+                class="form-select mb-5"
+                v-model="department.companyId"
+                required
+              >
+                <option :value="0" selected>Select Company</option>
+                <option
+                  :value="company.id"
+                  v-for="company in companies"
+                  :key="company.id"
+                >
+                  {{ company.name }}
+                </option>
+              </select>
+
               <label>Department Name</label>
               <input
                 type="text"
                 v-model="department.name"
                 class="form-control mb-5"
                 required
+              />
+
+              <label>Select Branch</label>
+              <select
+                @change="modify()"
+                class="form-select mb-5"
+                v-model="details.branch"
+                required
+              >
+                <option :value="{}" selected>{{ department.branch }}</option>
+                <option
+                  :value="branch"
+                  v-for="branch in branches"
+                  :key="branch.id"
+                >
+                  {{ branch.name }}
+                </option>
+              </select>
+
+              <label>Branch ID</label>
+              <input
+                type="text"
+                :value="department.branchId"
+                disabled
+                class="form-control mb-5"
               />
 
               <button
@@ -52,11 +93,25 @@
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      details: {
+        branch: {},
+      },
+    };
   },
 
   methods: {
-    ...mapActions("admin/setup", ["getDepartment", "updateDepartment"]),
+    ...mapActions("admin/setup", [
+      "getDepartment",
+      "updateDepartment",
+      "getCompanies",
+      "getBranches",
+    ]),
+
+    modify() {
+      this.department.branch = this.details.branch.name;
+      this.department.branchId = this.details.branch.id;
+    },
   },
 
   computed: {
@@ -65,12 +120,16 @@ export default {
       "pageLoading",
       "errorMessage",
       "department",
+      "companies",
+      "branches",
     ]),
     ...mapState(["user"]),
   },
 
   created() {
     this.getDepartment(this.$route.params.id);
+    this.getBranches();
+    this.getCompanies();
   },
 };
 </script>

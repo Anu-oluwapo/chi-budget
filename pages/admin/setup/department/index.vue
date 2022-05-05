@@ -35,6 +35,8 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Department Name</th>
+                  <th scope="col">Company</th>
+                  <th scope="col">Branch</th>
 
                   <th scope="col">Edit</th>
                 </tr>
@@ -43,6 +45,8 @@
                 <tr v-for="(department, i) in departments" :key="department.id">
                   <td>{{ i + 1 }}</td>
                   <td>{{ department.name }}</td>
+                  <td>{{ department.companyName }}</td>
+                  <td>{{ department.branch }}</td>
 
                   <td>
                     <nuxt-link :to="'/admin/setup/department/' + department.id"

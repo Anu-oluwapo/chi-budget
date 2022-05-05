@@ -41,14 +41,20 @@
                 required
               />
 
-              <label>Company</label>
+              <label>Select Company</label>
               <select
+                class="form-select mb-5"
                 v-model="details.company"
                 required
-                class="form-select mb-5"
               >
-                <option value="">Select Company</option>
-                <option value="CHI">CHI</option>
+                <option value="" selected>Select Company</option>
+                <option
+                  :value="company.name"
+                  v-for="company in companies"
+                  :key="company.id"
+                >
+                  {{ company.name }}
+                </option>
               </select>
 
               <label>Role</label>
@@ -100,13 +106,17 @@ export default {
 
   methods: {
     ...mapActions("admin/userManagement", ["createUser"]),
+    ...mapActions("admin/setup", ["getCompanies"]),
   },
 
   computed: {
     ...mapState("admin/userManagement", ["loading", "errorMessage"]),
+    ...mapState("admin/setup", ["companies"]),
     ...mapState(["user"]),
   },
 
-  created() {},
+  created() {
+    this.getCompanies();
+  },
 };
 </script>

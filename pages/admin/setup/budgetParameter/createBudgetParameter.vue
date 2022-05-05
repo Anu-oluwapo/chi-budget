@@ -35,13 +35,17 @@
                 required
               />
 
-              <label>Budget Parameter Type</label>
-              <input
-                type="text"
-                v-model="details.type"
-                class="form-control mb-5"
-                required
-              />
+              <label>Budget Type</label>
+              <select class="form-select mb-5" v-model="details.type" required>
+                <option value="" selected>Select Budget Type</option>
+                <option
+                  :value="type.name"
+                  v-for="type in budgetTypes"
+                  :key="type.id"
+                >
+                  {{ type.name }}
+                </option>
+              </select>
 
               <label>Year</label>
               <input
@@ -109,14 +113,16 @@ export default {
   },
 
   methods: {
-    ...mapActions("admin/setup", ["createBudgetParameter"]),
+    ...mapActions("admin/setup", ["createBudgetParameter", "getBudgetTypes"]),
   },
 
   computed: {
-    ...mapState("admin/setup", ["loading", "errorMessage"]),
+    ...mapState("admin/setup", ["loading", "errorMessage", "budgetTypes"]),
     ...mapState(["user"]),
   },
 
-  created() {},
+  created() {
+    this.getBudgetTypes();
+  },
 };
 </script>

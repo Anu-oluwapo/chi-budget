@@ -48,14 +48,20 @@
                 required
               />
 
-              <label>Company</label>
+              <label>Select Company</label>
               <select
+                class="form-select mb-5"
                 v-model="userDTO.company"
                 required
-                class="form-select mb-5"
               >
-                <option value="">Select Company</option>
-                <option value="CHI">CHI</option>
+                <option value="" selected>Select Company</option>
+                <option
+                  :value="company.name"
+                  v-for="company in companies"
+                  :key="company.id"
+                >
+                  {{ company.name }}
+                </option>
               </select>
 
               <label>Role</label>
@@ -98,6 +104,7 @@ export default {
 
   methods: {
     ...mapActions("admin/userManagement", ["getUser", "updateUser"]),
+    ...mapActions("admin/setup", ["getCompanies"]),
   },
 
   computed: {
@@ -108,11 +115,13 @@ export default {
       "errorMessage",
       "userDTO",
     ]),
+    ...mapState("admin/setup", ["companies"]),
     ...mapState(["user"]),
   },
 
   created() {
     this.getUser(this.$route.params.id);
+    this.getCompanies();
   },
 };
 </script>

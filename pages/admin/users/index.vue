@@ -13,14 +13,23 @@
             </nuxt-link>
           </div>
           <div class="card-body pt-4">
-            <div v-if="users.length == 0" class="emptyState"></div>
             <div
-              v-else-if="pageLoading"
+              v-if="pageLoading"
               class="spinner-grow d-block mx-auto my-5 text-primary"
               role="status"
             >
               <span class="sr-only">Loading...</span>
             </div>
+            <div v-else-if="users.length == 0" class="emptyState">
+              <img class="d-block mx-auto my-4" src="@/assets/empty.svg" />
+              <h3 class="text-center mt-5">No data available to show</h3>
+              <nuxt-link
+                class="d-block text-center"
+                to="/admin/setup/department/createdepartment"
+                >Create new department to continue</nuxt-link
+              >
+            </div>
+
             <table v-else class="table table-striped">
               <thead>
                 <tr>

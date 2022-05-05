@@ -45,13 +45,21 @@
                 required
               />
 
-              <label>Budget Parameter Type</label>
-              <input
-                type="text"
+              <label>Budget Type</label>
+              <select
+                class="form-select mb-5"
                 v-model="budgetParameter.type"
-                class="form-control mb-5"
                 required
-              />
+              >
+                <option value="" selected>Select Budget Type</option>
+                <option
+                  :value="type.name"
+                  v-for="type in budgetTypes"
+                  :key="type.id"
+                >
+                  {{ type.name }}
+                </option>
+              </select>
 
               <label>Year</label>
               <input
@@ -63,7 +71,7 @@
 
               <label>Start Date</label>
               <input
-                type="date"
+                type="datetime-local"
                 v-model="budgetParameter.startDate"
                 class="form-control mb-5"
                 required
@@ -71,7 +79,7 @@
 
               <label>End Date</label>
               <input
-                type="date"
+                type="datetime-local"
                 v-model="budgetParameter.endDate"
                 class="form-control mb-5"
                 required
@@ -112,6 +120,7 @@ export default {
     ...mapActions("admin/setup", [
       "getBudgetParameter",
       "updateBudgetParameter",
+      "getBudgetTypes",
     ]),
   },
 
@@ -121,12 +130,14 @@ export default {
       "pageLoading",
       "errorMessage",
       "budgetParameter",
+      "budgetTypes",
     ]),
     ...mapState(["user"]),
   },
 
   created() {
     this.getBudgetParameter(this.$route.params.id);
+    this.getBudgetTypes();
   },
 };
 </script>

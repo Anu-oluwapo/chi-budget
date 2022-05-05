@@ -82,6 +82,8 @@ export default {
     return {
       details: {
         name: "",
+        branch: {},
+        companyId: 0,
       },
     };
   },
